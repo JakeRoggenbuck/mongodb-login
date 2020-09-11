@@ -14,11 +14,12 @@ def home():
 
 @app.route('/login', methods=['POST'])
 def do_admin_login():
-    username = request.form['username']
-    password = request.form['password']
-    if database.not_empty_login(username, password):
-        if database.check_password(username, password):
-            return render_template('secret_page.html', username=username)
+    USERNAME = request.form['username']
+    PASSWORD = request.form['password']
+    DATABASE = database.Database()
+    if DATABASE.not_empty_login(USERNAME, PASSWORD):
+        if DATABASE.check_password(USERNAME, PASSWORD):
+            return render_template('secret_page.html', username=USERNAME)
         return "Ahhh"
     return render_template('login.html')
 
